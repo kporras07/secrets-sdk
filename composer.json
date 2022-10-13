@@ -20,5 +20,12 @@
         }
     ],
     "minimum-stability": "stable",
+    "scripts": {
+        "lint": "find src tests -name '*.php' -exec php -l {} \\;",
+        "phpcs": "./vendor/bin/phpcs --standard=PSR2 --extensions=php src tests",
+        "phpunit": "XDEBUG_MODE=coverage vendor/bin/phpunit --colors=always -c ./phpunit.xml --debug --do-not-cache-result --verbose",
+        "phpstan": "phpstan analyse src tests --level 8",
+        "test": "composer run lint && composer run phpcs && composer run phpunit && composer run phpstan"
+    },
     "require": {}
 }
